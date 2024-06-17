@@ -28,8 +28,9 @@ export class News extends Component {
     document.title = `${this.capatalize( this.props.category)} - NewsMonkey` ;
   }
   async upDateNews() {
-    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=f9306c46676245b1aa5b94305b66ed82&page=${this.state.page}&pageSize=${this.props.pageSize}`;
-    this.setState({ loading: true });
+    const apiKey = process.env.REACT_APP_NEWS_API_KEY;
+    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+        this.setState({ loading: true });
     let data = await fetch(url);
     let parsedData = await data.json();
     // this.setState(parsedData)
